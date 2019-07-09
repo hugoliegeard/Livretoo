@@ -45,6 +45,16 @@ class Order
      */
     private $restaurant;
 
+    /**
+     * @ORM\Column(type="uuid", unique=true, nullable=true)
+     */
+    private $deliveryApiId;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $deliveryInformations;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
@@ -125,6 +135,30 @@ class Order
     public function setRestaurant(?Restaurant $restaurant): self
     {
         $this->restaurant = $restaurant;
+
+        return $this;
+    }
+
+    public function getDeliveryApiId(): ?int
+    {
+        return $this->deliveryApiId;
+    }
+
+    public function setDeliveryApiId($deliveryApiId): self
+    {
+        $this->deliveryApiId = $deliveryApiId;
+
+        return $this;
+    }
+
+    public function getDeliveryInformations(): ?string
+    {
+        return $this->deliveryInformations;
+    }
+
+    public function setDeliveryInformations(?string $deliveryInformations): self
+    {
+        $this->deliveryInformations = $deliveryInformations;
 
         return $this;
     }

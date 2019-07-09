@@ -11,6 +11,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\HttpClient\HttpClient;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Workflow\Exception\LogicException;
 use Symfony\Component\Workflow\Registry;
 
@@ -46,6 +48,7 @@ class NewOrderCommand extends Command
         $order
             ->setDate(new \DateTime())
             ->setRestaurant($restaurant)
+            ->setDeliveryInformations($this->getRandomInformations())
             ->setUser($user);
 
         # Adding random products to order
@@ -69,7 +72,38 @@ class NewOrderCommand extends Command
             # Persist Data
             $this->manager->persist($order);
             $this->manager->flush();
+
+            # Send to Delivery Api
+            $httpClient = HttpClient::create();
+
+            $response = $httpClient->request('POST', 'http://api.biyn.media/api/deliveries', [
+                'json' => [
+                    'orderId' => $order->getId(),
+                    'restaurantName' => $restaurant->getName(),
+                    'restaurantPhone' => $restaurant->getPhone(),
+                    'restaurantAddress' => $restaurant->getAddress() . ' ' . $restaurant->getZipCode() . ' ' . $restaurant->getCity(),
+                    'customerFullname' => $user->getFullname(),
+                    'customerPhone' => $user->getPhone(),
+                    'customerAddress' => $user->getAddress(),
+                    'deliveryInformations' => $order->getDeliveryInformations(),
+                    'status' => $order->getStatus(),
+                ],
+            ]);
+
             $io->success('Congrats, You have a new order to handle !');
+            if($response->getStatusCode() == Response::HTTP_CREATED) {
+
+                $data = $response->toArray();
+                $order->setDeliveryApiId($data['id']);
+                $this->manager->flush();
+
+                $io->success('Order transmitted to delivery api.');
+
+            } else {
+
+                $io->warning('Order failed to delivery api.');
+
+            }
 
         } catch (LogicException $e) {
 
@@ -114,5 +148,17 @@ class NewOrderCommand extends Command
             ->findByRestaurant($idRestaurant);
 
         return $products[array_rand($products)];
+    }
+
+    private function getRandomInformations()
+    {
+        $informations = [
+            'Le code pour entrer est la 1529',
+            'Vous pouvez appeler pour que je vienne',
+            'Je suis joignable au 06 98 76 54 34',
+            'Je viendrais récupérer la commande à la porte'
+        ];
+
+        return $informations[array_rand($informations)];
     }
 }
