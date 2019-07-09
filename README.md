@@ -62,8 +62,8 @@ A vous de créer / mettre à jour les entités, contrôleurs pour répondre aux 
 
 ### Etape 3 (3 heures) :
 
-- Dans les events grace a HttpClient ou $.ajax consommer l'api de livraison.
-- Resyncroniser votre workflow avec l'API lorsqu'un livreur à terminer sa livraison.
+- Dans les events grace a HttpClient consommer l'api de livraison.
+- Syncroniser votre workflow avec l'API lorsqu'un livreur à terminer sa livraison.
 
 ## Installation
 
