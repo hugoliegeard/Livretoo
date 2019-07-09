@@ -48,6 +48,23 @@ Les livreurs disposant d'une application mobile, mettent directement à jour leu
 Avant votre arrivée, un stagiaire à déjà commencé à mettre en place certaines entités. 
 A vous de créer / mettre à jour les entités, contrôleurs pour répondre aux objectifs.
 
+### Etape 1 :
+
+## Etape 1 (3 heures) :
+
+- Login Form + Authentication
+- Création du Workflow (workflow.yaml) : Places et Transitions. Génération de votre graph.
+
+## Etape 2 (3 heures) :
+
+- Traitement du workflow d'une commande *(Evenements Workflow à la création d'une commande : app:new-order)*
+- Pensez aux notifications email. *(MailCatcher ou MailTrap)*
+
+## Etape 3 (3 heures) :
+
+- Dans les events grace a HttpClient ou $.ajax consommer l'api de livraison.
+- Resyncroniser votre workflow avec l'API lorsqu'un livreur à terminer sa livraison.
+
 ## Installation
 
 Installation des Dépendances via Composer
