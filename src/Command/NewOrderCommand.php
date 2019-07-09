@@ -91,19 +91,6 @@ class NewOrderCommand extends Command
             ]);
 
             $io->success('Congrats, You have a new order to handle !');
-            if($response->getStatusCode() == Response::HTTP_CREATED) {
-
-                $data = $response->toArray();
-                $order->setDeliveryApiId($data['id']);
-                $this->manager->flush();
-
-                $io->success('Order transmitted to delivery api.');
-
-            } else {
-
-                $io->warning('Order failed to delivery api.');
-
-            }
 
         } catch (LogicException $e) {
 
