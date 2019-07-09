@@ -51,11 +51,11 @@ A vous de créer / mettre à jour les entités, contrôleurs pour répondre aux 
 ### Etape 1 (3 heures) :
 
 - Login Form + Authentication
-- Création du Workflow (workflow.yaml) : Places et Transitions. Génération de votre graph.
+- Création du Workflow (workflow.yaml) : Places et Transitions. Génération de votre graph : [https://symfony.com/doc/current/workflow/dumping-workflows.html](https://symfony.com/doc/current/workflow/dumping-workflows.html)
 
 ### Etape 2 (3 heures) :
 
-- Traitement du workflow d'une commande *(Evenements Workflow à la création d'une commande : app:new-order)*
+- Traitement du workflow d'une commande *(Evenements Workflow à la création d'une commande : app:new-order)* : [https://symfony.com/doc/current/workflow.html#guard-events](https://symfony.com/doc/current/workflow.html#guard-events)
 - Mise en place de **l'interface Restaurateur** : Voir les commandes du restaurant et accepter / refuser une commande.
 - Mise en place de **l'interface Dispatcher** : Voir toutes commandes des restaurants et visualiser les statuts.
 - Pensez aux notifications email. *(MailCatcher ou MailTrap)*
