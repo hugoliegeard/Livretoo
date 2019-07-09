@@ -21,8 +21,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        - { path: ^/customer, roles: ROLE_ADMIN }
-        - { path: ^/delivery, roles: ROLE_USER }
+        - { path: ^/dispatcher, roles: ROLE_DISPATCHER }
+        - { path: ^/restaurant, roles: ROLE_MANAGER }
 
     role_hierarchy:
         ROLE_DELIVERY: ROLE_CUSTOMER
