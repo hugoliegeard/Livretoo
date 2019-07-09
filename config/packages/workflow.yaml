@@ -1,0 +1,18 @@
+framework:
+    workflows:
+        ordering_workflow:
+            type: 'workflow' # or 'state_machine'
+            marking_store:
+                type: 'single_state' # or 'multiple_state'
+                arguments:
+                    - 'status'
+            supports:
+                - App\Entity\Order
+            initial_place: created
+            places:
+                - created
+                - awaiting
+            transitions:
+                to_restaurant:
+                    from: created
+                    to: awaiting

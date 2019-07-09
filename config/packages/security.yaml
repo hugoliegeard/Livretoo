@@ -1,4 +1,7 @@
 security:
+    encoders:
+        App\Entity\User: 'auto'
+
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         in_memory: { memory: ~ }
@@ -18,5 +21,10 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/customer, roles: ROLE_ADMIN }
+        - { path: ^/delivery, roles: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_DELIVERY: ROLE_CUSTOMER
+        ROLE_MANAGER: ROLE_CUSTOMER
+        ROLE_DISPATCHER: ROLE_DELIVERY

@@ -16,3 +16,16 @@
 ###> symfony/web-server-bundle ###
 /.web-server-pid
 ###< symfony/web-server-bundle ###
+.idea/dataSources/0640742e-19c1-414f-851b-20ba837f9800.xml
+.idea/dataSources/0a705c8f-07a7-4394-8bac-4453e589b993.xml
+.idea/dataSources/0e990fef-6363-4b3e-9420-1fdd34d021e4.xml
+.idea/dataSources/b8926cf0-45ac-43be-b6c8-f0de35b07e64.xml
+.idea/dataSources/fec609f8-7965-4f05-9d6c-2639d4efd5f7.xml
+.idea/deployment.xml
+.idea/livretoo.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/php.xml
+.idea/symfony2.xml
+.idea/vcs.xml
+.idea/workspace.xml
