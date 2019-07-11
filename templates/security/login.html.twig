@@ -1,0 +1,53 @@
+{% extends 'empty.html.twig' %}
+
+{% block title %}Connexion !{% endblock %}
+
+{% block content %}
+
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="{{ path('default_home') }}"><b>Admin</b>LivreToo</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+
+                <p class="login-box-msg">Espace de Gestion</p>
+
+                <form method="post">
+
+                    {% if error %}
+                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    <div class="input-group mb-3">
+                        <input name="email" type="email" value="{{ last_username }}" class="form-control" placeholder="Email">
+                        <div class="input-group-append input-group-text">
+                            <span class="fas fa-envelope"></span>
+                        </div>
+                    </div>
+                    <div class="input-group mb-3">
+                        <input type="password"name="password" class="form-control" placeholder="Password">
+                        <div class="input-group-append input-group-text">
+                            <span class="fas fa-lock"></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <input type="hidden" name="_csrf_token"
+                                   value="{{ csrf_token('authenticate') }}"
+                            >
+                            <button type="submit" class="btn btn-primary btn-block btn-flat">
+                                Connexion
+                            </button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                </form>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+
+{% endblock %}
