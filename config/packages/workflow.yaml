@@ -12,7 +12,27 @@ framework:
             places:
                 - created
                 - awaiting
+                - validated
+                - refused
+                - shipped
+                - delivered
+                - failed
             transitions:
                 to_restaurant:
                     from: created
                     to: awaiting
+                processing:
+                    from: awaiting
+                    to: validated
+                refusing:
+                    from: awaiting
+                    to: refused
+                delivering:
+                    from: validated
+                    to: shipped
+                completed:
+                    from: shipped
+                    to: delivered
+                failing:
+                    from: shipped
+                    to: failed
