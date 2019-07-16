@@ -73,23 +73,6 @@ class NewOrderCommand extends Command
             $this->manager->persist($order);
             $this->manager->flush();
 
-            # Send to Delivery Api
-            $httpClient = HttpClient::create();
-
-            $response = $httpClient->request('POST', 'http://api.biyn.media/api/deliveries', [
-                'json' => [
-                    'orderId' => $order->getId(),
-                    'restaurantName' => $restaurant->getName(),
-                    'restaurantPhone' => $restaurant->getPhone(),
-                    'restaurantAddress' => $restaurant->getAddress() . ' ' . $restaurant->getZipCode() . ' ' . $restaurant->getCity(),
-                    'customerFullname' => $user->getFullname(),
-                    'customerPhone' => $user->getPhone(),
-                    'customerAddress' => $user->getAddress(),
-                    'deliveryInformations' => $order->getDeliveryInformations(),
-                    'status' => $order->getStatus(),
-                ],
-            ]);
-
             $io->success('Congrats, You have a new order to handle !');
 
         } catch (LogicException $e) {

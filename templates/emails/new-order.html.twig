@@ -1,0 +1,13 @@
+<h3>Nouvelle Commande !</h3>
+
+<p>Bonjour {{ name }}! Vous avez une nouvelle commande #{{ orderId }}</p>
+<p>Client : {{ customerName }}</p>
+<p>Détail de la commande :</p>
+
+<ul>
+    {% for product in products %}
+        <li>{{ product.name }} x1</li>
+    {% endfor %}
+</ul>
+
+<p>Veuillez vous connecter pour accepter / refuser la commande. Merci.</p>
